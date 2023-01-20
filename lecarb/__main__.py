@@ -55,7 +55,7 @@ from .estimator.naru.naru import train_naru, test_naru, update_naru
 from .estimator.mscn.mscn import train_mscn, test_mscn
 from .estimator.lw.lw_nn import train_lw_nn, test_lw_nn
 from .estimator.lw.lw_tree import train_lw_tree, test_lw_tree
-from .estimator.deepdb.deepdb import train_deepdb, test_deepdb, update_deepdb
+# from .estimator.deepdb.deepdb import train_deepdb, test_deepdb, update_deepdb
 from .workload.workload import dump_sqls
 
 if __name__ == "__main__":
@@ -222,7 +222,8 @@ if __name__ == "__main__":
         if args["--estimator"] == "naru":
             update_naru(seed, dataset, version, workload, params, overwrite)
         elif args["--estimator"] == "deepdb":
-            update_deepdb(seed, dataset, version, workload, params, overwrite)
+            # update_deepdb(seed, dataset, version, workload, params, overwrite)
+            pass
         else:
             raise NotImplementedError
         exit(0)

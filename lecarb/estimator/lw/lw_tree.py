@@ -13,6 +13,7 @@ from ..utils import evaluate, run_test
 from ...dataset.dataset import load_table
 from ...workload.workload import Query
 from ...constants import MODEL_ROOT, NUM_THREADS, PKL_PROTO
+from ast import literal_eval
 
 L = logging.getLogger(__name__)
 
@@ -140,3 +141,33 @@ def test_lw_tree(dataset: str, version: str, workload: str, params: Dict[str, An
         run_test(dataset, version, workload, estimator, overwrite)
 
 
+def test():
+    root = "/Users/orange/PycharmProjects/AreCELearnedYet"
+    dataset = "census13"
+    params = literal_eval("{'model': 'original_base-lwxgb_tr64_bin200_100k-123', 'use_cache': True}")
+    version = "original"
+    workload = "base"
+    overwrite = False
+    model_file = root / MODEL_ROOT / dataset / f"{params['model']}.pkl"
+    L.info(f"Load model from {model_file} ...")
+    with open(model_file, 'rb') as f:
+        state = pickle.load(f)
+
+    # load corresonding version of table
+    table = load_table(dataset, state['version'])
+
+    # load model
+    args = state['args']
+    model = state['model']
+    pg_est = Postgres(table, args.bins, state['seed'])
+    estimator = LWTree(model, params['model'], pg_est, table)
+
+    L.info(f"Load and built lw(tree) estimator: {estimator}")
+    if params['use_cache']:
+        # test table might has different version with train
+        test_table = load_table(dataset, version)
+        lw_dataset = load_lw_dataset(test_table, workload, state['seed'], args.bins)
+        X, _, gt = lw_dataset['test']
+        run_test(dataset, version, workload, estimator, overwrite, lw_vec=(X, gt))
+    else:
+        run_test(dataset, version, workload, estimator, overwrite)

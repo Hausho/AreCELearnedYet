@@ -11,6 +11,8 @@ from scipy.stats import entropy
 
 from ..constants import DATA_ROOT, PKL_PROTO
 from ..dtypes import is_categorical
+import warnings
+warnings.filterwarnings('ignore')
 
 L = logging.getLogger(__name__)
 

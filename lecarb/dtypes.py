@@ -7,7 +7,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-CATEGORICAL_NUMPY_DTYPES = [np.bool, np.object]
+CATEGORICAL_NUMPY_DTYPES = [np.bool_, np.object_]
 CATEGORICAL_PANDAS_DTYPES = [pd.CategoricalDtype, pd.PeriodDtype]
 CATEGORICAL_DTYPES = CATEGORICAL_NUMPY_DTYPES + CATEGORICAL_PANDAS_DTYPES
 

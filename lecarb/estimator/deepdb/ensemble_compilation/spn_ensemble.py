@@ -8,9 +8,9 @@ from time import perf_counter
 
 import numpy as np
 import scipy.stats
-from ensemble_compilation.graph_representation import Query, QueryType, AggregationType, AggregationOperationType
-from ensemble_compilation.probabilistic_query import IndicatorExpectation, Expectation
-from evaluation.utils import parse_what_if_query, all_operations_of_type
+from ..ensemble_compilation.graph_representation import Query, QueryType, AggregationType, AggregationOperationType
+from ..ensemble_compilation.probabilistic_query import IndicatorExpectation, Expectation
+from ..evaluation.utils import parse_what_if_query, all_operations_of_type
 from spn.algorithms.Statistics import get_structure_stats
 import bz2
 

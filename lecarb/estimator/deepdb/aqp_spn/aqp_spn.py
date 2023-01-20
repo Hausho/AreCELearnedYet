@@ -8,15 +8,15 @@ import numpy as np
 from spn.structure.Base import Context, Product
 from spn.structure.StatisticalTypes import MetaType
 
-from aqp_spn.aqp_leaves import Categorical
-from aqp_spn.aqp_leaves import IdentityNumericLeaf, identity_likelihood_range, identity_expectation, \
+from ..aqp_spn.aqp_leaves import Categorical
+from ..aqp_spn.aqp_leaves import IdentityNumericLeaf, identity_likelihood_range, identity_expectation, \
     categorical_likelihood_range, identity_distinct_ranges, categorical_distinct_ranges
-from aqp_spn.aqp_leaves import Sum
-from aqp_spn.custom_spflow.custom_learning import learn_mspn
-from aqp_spn.expectations import expectation
-from aqp_spn.group_by_combination import group_by_combinations
-from aqp_spn.ranges import NominalRange, NumericRange
-from ensemble_compilation.spn_ensemble import CombineSPN
+from ..aqp_spn.aqp_leaves import Sum
+from ..aqp_spn.custom_spflow.custom_learning import learn_mspn
+from ..aqp_spn.expectations import expectation
+from ..aqp_spn.group_by_combination import group_by_combinations
+from ..aqp_spn.ranges import NominalRange, NumericRange
+from ..ensemble_compilation.spn_ensemble import CombineSPN
 
 logger = logging.getLogger(__name__)
 
